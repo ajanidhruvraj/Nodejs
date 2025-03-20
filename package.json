@@ -8,5 +8,8 @@
     "start": "node file.js"
   },
   "author": "Dhruvraj",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
