@@ -1,4 +1,5 @@
 const fs = require("fs"); //fs is an built in module for file handling
+const os = require("os");
 
 //sync..
 fs.writeFileSync("./test.txt","Hello World");
@@ -24,3 +25,4 @@ fs.cpSync("./test.txt","./cpy.txt");
 fs.unlinkSync("./cpy.txt");
 
 console.log(fs.statSync("./test.txt"));
+console.log(os.cpus().length);
