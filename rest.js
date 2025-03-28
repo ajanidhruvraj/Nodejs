@@ -1,8 +1,11 @@
 const express = require('express');
+const fs = require('fs');
 const data = require('./mock_data.json');
+const { json } = require('stream/consumers');
 
 const app = express();
 const port = 8000;
+app.use(express.urlencoded({extended:"false"}))
 
 app.get('/user' ,(req,res)=>{
     return res.json(data);
@@ -32,7 +35,11 @@ app.route('/user/name/:id').get((req,res)=>{
     return res.json({status:"pending"});
 })
 app.post('/user/post',(req,res)=>{
-    return res.json({status:"pending"});
+    const body = req.body;
+    data.push({...body,id:data.length+1})
+    fs.writeFile('./mock_data.json',JSON.stringify(data),(req,res)=>{
+        return res.json({status:"pending"});
+    })
 })
 
 app.listen(port,()=>{ console.log(`the server is on port ${port}`);})
